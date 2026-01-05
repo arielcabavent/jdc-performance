@@ -1,0 +1,225 @@
+.cuerpo-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tarjeta-bienvenida {
+    background-color: #ffffff;
+    padding: 50px 40px;
+    border-radius: 0px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    width: 500px;
+    text-align: center;
+    border: 1px solid #eaeaea;
+    border-top: 5px solid #eddfbc;
+}
+
+.contenedor-logo { margin-bottom: 15px; }
+.logo-perfil {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.tarjeta-bienvenida h2 {
+    font-family: 'Times New Roman', serif;
+    color: #111;
+    margin-bottom: 5px;
+    border: none;
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.nombre-usuario {
+    color: #b8860b;
+    font-family: 'Times New Roman', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: normal;
+    border-bottom: 1px solid #eddfbc;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.etiqueta-rol {
+    background-color: #111;
+    color: #eddfbc;
+    padding: 5px 12px;
+    font-size: 0.75em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+}
+
+.contenedor-rol {
+    margin-bottom: 35px;
+}
+
+.datos-perfil {
+    margin-bottom: 35px;
+    text-align: left;
+}
+
+.fila-dato {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.fila-dato:last-child {
+    border-bottom: none;
+}
+
+.etiqueta-dato {
+    color: #888;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.valor-dato {
+    color: #000;
+    font-weight: normal;
+    font-size: 1.1em;
+    font-family: 'Times New Roman', serif;
+}
+
+.contenedor-botones {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-accion {
+    background-color: #111;
+    color: #eddfbc;
+    padding: 14px;
+    border: 1px solid #111;
+    width: 100%;
+    font-family: 'Times New Roman', serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: block;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.btn-accion:hover {
+    background-color: #eddfbc;
+    color: #111;
+    border-color: #eddfbc;
+}
+
+.btn-cerrar {
+    background-color: #7a1c24;
+    color: white;
+    padding: 14px;
+    border: 1px solid #7a1c24;
+    width: 100%;
+    font-family: 'Times New Roman', serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.btn-cerrar:hover {
+    background-color: #5c151b;
+    border-color: #5c151b;
+}
+
+.link-volver-perfil {
+    display: block;
+    margin-top: 15px;
+    color: #999;
+    text-decoration: none;
+    font-size: 0.85em;
+    font-style: italic;
+    font-family: 'Times New Roman', serif;
+    transition: color 0.3s;
+}
+
+.link-volver-perfil:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+.btn-container-full {
+    width: 100%;
+}
+
+.form-logout {
+    width: 100%;
+    margin: 0;
+}
+
+.tarjeta-agenda {
+    margin-top: 20px;
+}
+
+.msg-vacio {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+}
+
+.tabla-agenda {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.tabla-agenda thead tr {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+.tabla-agenda th {
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+.tabla-agenda td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.texto-bold {
+    font-weight: bold;
+}
+
+.badge {
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 0.9em;
+    display: inline-block;
+}
+
+.etiqueta-pendiente {
+    background-color: #ffd700;
+    color: black;
+}
+
+.etiqueta-listo {
+    background-color: #28a745;
+    color: white;
+}

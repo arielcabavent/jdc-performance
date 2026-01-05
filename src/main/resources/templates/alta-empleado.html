@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Alta de Empleado - JDC Admin</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/forms.css}">
+</head>
+<body>
+
+<div class="contenedor-form contenedor-ancho">
+
+    <div class="contenedor-logo">
+        <img th:src="@{/img/logog.jpeg}" alt="JDC Logo" class="logo-form">
+    </div>
+
+    <h2>NUEVO EMPLEADO</h2>
+
+    <div th:if="${exito}" class="error-msg msg-exito">
+        <span th:text="${exito}"></span>
+    </div>
+
+    <div th:if="${error}" class="error-msg msg-prec">
+        <span th:text="${error}"></span>
+    </div>
+
+    <form th:action="@{/admin/alta-empleado}" th:object="${empleadoDto}" method="post">
+
+        <input type="text" th:field="*{nombre}" placeholder="NOMBRE(S)" required autocomplete="off"/>
+
+        <div class="fila-entradas">
+            <input type="text" th:field="*{primerApellido}" placeholder="1ER APELLIDO" required autocomplete="off"/>
+            <input type="text" th:field="*{segundoApellido}" placeholder="2DO APELLIDO" autocomplete="off"/>
+        </div>
+
+        <input type="text" th:field="*{telefono}" placeholder="TELÉFONO" required autocomplete="off"/>
+
+        <div class="separador-form"></div>
+
+        <div class="fila-entradas">
+            <select th:field="*{puesto}" required>
+                <option value="" disabled selected>SELECCIONA EL PUESTO</option>
+                <option value="Mecánico">Mecánico</option>
+                <option value="Eléctrico">Eléctrico</option>
+                <option value="Hojalatero">Hojalatero</option>
+                <option value="Pintor">Pintor</option>
+                <option value="Tuning">Especialista Tuning</option>
+                <option value="Vendedor">Vendedor de autos</option>
+            </select>
+            <input type="number" step="0.01" th:field="*{sueldo}" placeholder="SUELDO MENSUAL ($)" required />
+        </div>
+
+        <div class="separador-form"></div>
+
+        <input type="text" th:field="*{correo}" placeholder="CORREO / LOGIN" required autocomplete="off"/>
+        <input type="password" th:field="*{password}" placeholder="CONTRASEÑA INICIAL" required />
+
+        <button type="submit" class="btn-ancho-total">DAR DE ALTA</button>
+    </form>
+
+    <div style="margin-top: 30px;">
+        <a th:href="@{/welcome}" class="link-volver">← Volver a Mi Perfil</a>
+    </div>
+</div>
+
+</body>
+</html>

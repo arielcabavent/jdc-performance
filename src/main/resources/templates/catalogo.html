@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Autos - JDC Performance</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/catalogo.css}">
+</head>
+<body class="cuerpo-catalogo">
+
+<header class="encabezado-catalogo">
+    <div class="encabezado-izq">
+        <img th:src="@{/img/logog.jpeg}" alt="Logo" class="logo-mini">
+        <a th:href="@{/}" class="link-nav">INICIO</a>
+    </div>
+
+    <div class="encabezado-der">
+        <span th:if="${usuarioSesion == null}">
+            <a th:href="@{/login}" class="btn-nav-login">INICIAR SESIÓN</a>
+        </span>
+
+        <span th:if="${usuarioSesion != null}" class="menu-usuario">
+            <span class="saludo-usuario">Hola, <span th:text="${usuarioSesion.nombreCompleto}" class="nombre-destacado">Usuario</span></span>
+            <a th:href="@{/welcome}" class="link-nav">MI PERFIL</a>
+        </span>
+    </div>
+</header>
+
+<div class="contenedor-catalogo">
+
+    <h1 class="titulo-catalogo">Showroom Virtual</h1>
+
+    <div th:if="${autos.isEmpty()}" class="estado-vacio">
+        <div class="icono-vacio"></div>
+        <h3>Inventario Agotado</h3>
+        <p>En este momento no disponemos de unidades. Por favor, verifique más tarde.</p>
+    </div>
+
+    <div class="grid-autos">
+
+        <div class="tarjeta-auto" th:each="auto : ${autos}">
+
+            <div class="contenedor-img">
+                <img th:src="@{${auto.imagenUrl != null && !auto.imagenUrl.isEmpty() ? auto.imagenUrl : '/img/default.png'}}"
+                     alt="Foto Auto"
+                     class="img-auto">
+            </div>
+
+            <div class="info-auto">
+                <h3 class="titulo-auto">
+                    <span th:text="${auto.marca}">MARCA</span>
+                    <span th:text="${auto.modelo}">MODELO</span>
+                </h3>
+
+                <div class="precio-auto" th:text="'$' + ${auto.precio}">$0.00</div>
+
+                <div class="detalles-auto">
+                    <p>Color: <span th:text="${auto.color}">Negro</span></p>
+                    <p>Estado: <span style="color: #1f7a38; font-weight: bold;">Disponible</span></p>
+                </div>
+            </div>
+
+            <a th:if="${usuarioSesion == null}" th:href="@{/login}" class="btn-tarjeta">
+                INICIA SESIÓN PARA COMPRAR 🔒
+            </a>
+
+            <a th:if="${usuarioSesion != null}"
+               th:href="@{/cliente/agendar-cita(servicioInteres=${auto.marca + ' ' + auto.modelo})}"
+               class="btn-tarjeta">
+                ME INTERESA 📅
+            </a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

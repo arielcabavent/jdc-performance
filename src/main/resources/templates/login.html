@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión - JDC</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+
+<div class="login-container">
+
+    <!--IMAGEN Y BIENVENIDO-->
+    <div class="logo-container">
+        <img th:src="@{/img/logog.jpeg}" alt="JDC Logo" class="login-logo">
+    </div>
+
+    <h2>BIENVENIDO</h2>
+
+    <div th:if="${error}" class="error-msg msg-prec">
+        <span th:text="${error}"></span>
+    </div>
+
+    <div th:if="${exito}" class="error-msg">
+        <span th:text="${exito}"></span>
+    </div>
+
+    <!--formulario-->
+    <form th:action="@{/login}" th:object="${loginDto}" method="post" class="login-form">
+        <div class="entradas">
+            <input type="text" id="login" th:field="*{login}" placeholder="CORREO ELECTRÓNICO" required autofocus autocomplete="off"/>
+        </div>
+
+        <div class="entradas">
+            <input type="password" id="password" th:field="*{password}" placeholder="CONTRASEÑA" required />
+        </div>
+
+        <button type="submit" class="btn-login">INICIAR SESIÓN</button>
+    </form>
+
+    <!--PIE DE PAGINA-->
+    <div class="seccion-reg">
+        <p class="texto-reg">¿Aún no eres miembro?</p>
+        <a th:href="@{/signin}" class="btn-reg">CREAR UNA CUENTA</a>
+    </div>
+
+    <div class="footer-pie">
+        <a th:href="@{/}" class="back-link">Regresar al inicio</a>
+    </div>
+</div>
+
+</body>
+</html>

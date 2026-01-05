@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Perfil - JDC Performance</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/perfil.css}">
+</head>
+<body class="cuerpo-perfil">
+
+<div class="tarjeta-bienvenida">
+
+    <div class="contenedor-logo">
+        <img th:src="@{/img/logog.jpeg}" alt="JDC Logo" class="logo-perfil">
+    </div>
+
+    <h2>MI PERFIL </h2>
+
+    <div th:if="${exito}" class="error-msg msg-exito">
+        <span th:text="${exito}"></span>
+    </div>
+
+    <div class="nombre-usuario" th:text="${session.usuarioSesion.nombreCompleto}"></div>
+
+    <div class="contenedor-rol">
+        <span class="etiqueta-rol" th:text="${session.usuarioSesion.rol}"></span>
+    </div>
+
+    <div class="datos-perfil">
+        <div class="fila-dato">
+            <span class="etiqueta-dato">CORREO:</span>
+            <span class="valor-dato" th:text="${session.usuarioSesion.correo}"></span>
+        </div>
+
+        <div class="fila-dato" th:if="${session.usuarioSesion.puesto != null}">
+            <span class="etiqueta-dato">PUESTO:</span>
+            <span class="valor-dato" th:text="${session.usuarioSesion.puesto}"></span>
+        </div>
+
+        <div class="fila-dato" th:if="${session.usuarioSesion.sueldo != null}">
+            <span class="etiqueta-dato">SUELDO:</span>
+            <span class="valor-dato" th:text="'$' + ${session.usuarioSesion.sueldo}"></span>
+        </div>
+    </div>
+
+    <div class="contenedor-botones">
+
+        <div th:if="${session.usuarioSesion.rol == 'Admin'}" class="btn-container-full">
+            <a th:href="@{/admin/alta-empleado}" class="btn-accion">
+                DAR DE ALTA EMPLEADO
+            </a>
+        </div>
+
+        <div th:if="${session.usuarioSesion.rol == 'Admin'}" class="btn-container-full">
+            <a th:href="@{/admin/alta-auto}" class="btn-accion">
+                PUBLICAR AUTO EN VENTA
+            </a>
+        </div>
+
+        <form th:action="@{/logout}" method="post" class="form-logout">
+            <button type="submit" class="btn-cerrar">CERRAR SESIÓN</button>
+        </form>
+
+        <a th:href="@{/}" class="link-volver-perfil">← Volver al Inicio</a>
+    </div>
+</div>
+
+<div th:if="${session.usuarioSesion.rol == 'Empleado'}" class="tarjeta-bienvenida tarjeta-agenda">
+    <h2>MI AGENDA DE TRABAJO</h2>
+
+    <div th:if="${#lists.isEmpty(misCitas)}" class="msg-vacio">
+        No tienes citas pendientes próximas.
+    </div>
+
+    <table th:if="${not #lists.isEmpty(misCitas)}" class="tabla-agenda">
+        <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Servicio / Auto</th>
+            <th>Cliente</th>
+            <th>Estado</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cita : ${misCitas}">
+            <td th:text="${cita.fechaCita}"></td>
+            <td th:text="${cita.horaCita}"></td>
+            <td class="texto-bold" th:text="${cita.servicio}"></td>
+
+            <td th:text="|${cita.cliente?.nombre} ${cita.cliente?.apellidoPaterno}|"></td>
+
+            <td>
+                <span class="badge"
+                      th:classappend="${cita.estado == 'Pendiente' ? 'etiqueta-pendiente' : 'etiqueta-listo'}"
+                      th:text="${cita.estado}">
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

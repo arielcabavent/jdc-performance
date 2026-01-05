@@ -1,0 +1,193 @@
+.cuerpo-catalogo {
+    /* Si tenías estilos específicos para el body, van aquí. Si no, hereda del global */
+}
+
+.encabezado-catalogo {
+    background-color: #ffffff;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eaeaea;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.encabezado-izq, .encabezado-der {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-mini {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.link-nav {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 0.9em;
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    text-transform: uppercase;
+}
+
+.link-nav:hover {
+    color: #b8860b;
+}
+
+.btn-nav-login {
+    text-decoration: none;
+    background-color: #111;
+    color: #eddfbc;
+    padding: 8px 15px;
+    font-size: 0.8em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.btn-nav-login:hover {
+    background-color: #eddfbc;
+    color: #111;
+}
+
+.saludo-usuario {
+    font-size: 0.9em;
+    color: #666;
+}
+.nombre-destacado {
+    color: #000;
+    font-weight: bold;
+    font-family: 'Times New Roman', serif;
+}
+
+.contenedor-catalogo {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.titulo-catalogo {
+    text-align: center;
+    color: #111;
+    font-family: 'Times New Roman', serif;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    text-shadow: none;
+    border-bottom: 3px solid #eddfbc;
+    display: inline-block;
+    padding: 0 20px 10px 20px;
+    letter-spacing: 3px;
+}
+
+.grid-autos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+.tarjeta-auto {
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-auto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border-color: #eddfbc;
+}
+
+.contenedor-img {
+    overflow: hidden;
+    height: 220px;
+}
+
+.img-auto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.tarjeta-auto:hover .img-auto {
+    transform: scale(1.05);
+}
+
+.info-auto {
+    padding: 25px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.titulo-auto {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.4em;
+    color: #111;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.precio-auto {
+    font-size: 1.5em;
+    color: #b8860b;
+    font-weight: normal;
+    font-family: 'Times New Roman', serif;
+    margin-bottom: 15px;
+}
+
+.detalles-auto {
+    color: #777;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    border-top: 1px solid #f4f4f4;
+    padding-top: 15px;
+    line-height: 1.6;
+}
+
+.btn-tarjeta {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background: #111;
+    color: #eddfbc;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+}
+
+.btn-tarjeta:hover {
+    background: #eddfbc;
+    color: #111;
+}
+
+.estado-vacio {
+    text-align: center;
+    padding: 60px;
+    background-color: #fff;
+    border: 1px dashed #ccc;
+    color: #888;
+}
+.icono-vacio {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.estado-vacio h3 {
+    border: none;
+    font-size: 1.2em;
+    color: #555;
+}

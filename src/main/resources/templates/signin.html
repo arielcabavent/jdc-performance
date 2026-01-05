@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro - JDC Performance</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/forms.css}">
+</head>
+<body>
+
+<div class="contenedor-form contenedor-normal">
+
+    <div class="contenedor-logo">
+        <img th:src="@{/img/logog.jpeg}" alt="JDC Logo" class="logo-form">
+    </div>
+
+    <h2>CREAR CUENTA</h2>
+
+    <div th:if="${error}" class="error-msg msg-prec">
+        <span th:text="${error}"></span>
+    </div>
+
+    <form th:action="@{/signin}" th:object="${signinDto}" method="post" id="registroForm">
+
+        <input type="text" th:field="*{nombre}" placeholder="NOMBRE(S)" required autocomplete="off"/>
+
+        <div class="fila-entradas">
+            <input type="text" th:field="*{primerApellido}" placeholder="1ER APELLIDO" required autocomplete="off"/>
+            <input type="text" th:field="*{segundoApellido}" placeholder="2DO APELLIDO" autocomplete="off"/>
+        </div>
+
+        <input type="text" th:field="*{telefono}" placeholder="TELÉFONO" required autocomplete="off"/>
+
+        <div class="separador-form"></div>
+
+        <input type="text" th:field="*{login}" id="campoCorreo" placeholder="CORREO ELECTRÓNICO" required autocomplete="off"/>
+
+        <span id="msgCorreo" class="msg-validacion"></span>
+
+        <input type="password" th:field="*{password}" id="pass1" placeholder="CONTRASEÑA" required />
+        <input type="password" th:field="*{confirmPassword}" id="pass2" placeholder="CONFIRMAR CONTRASEÑA" required />
+
+        <span id="msgPassword" class="msg-validacion"></span>
+
+        <button type="submit" class="btn-ancho-total" id="btnRegistrar">REGISTRARME</button>
+    </form>
+
+    <div style="margin-top: 30px;">
+        <a th:href="@{/login}" class="link-volver">← ¿Ya tienes cuenta? Inicia Sesión</a>
+    </div>
+</div>
+
+<script>
+    const pass1 = document.getElementById('pass1');
+    const pass2 = document.getElementById('pass2');
+    const msgPass = document.getElementById('msgPassword');
+    const correo = document.getElementById('campoCorreo');
+    const msgCorreo = document.getElementById('msgCorreo');
+
+    // ⚠️ ACTUALIZADO: Cambiamos las clases dentro del JS para que coincidan con el CSS
+    function validarPasswords() {
+        if (pass2.value === "") { msgPass.innerHTML = ""; return; }
+        if (pass1.value === pass2.value) {
+            msgPass.innerHTML = "✔ Las contraseñas coinciden";
+            msgPass.className = "msg-validacion texto-valido"; // Antes: validation-msg text-valid
+        } else {
+            msgPass.innerHTML = "✗ Las contraseñas NO coinciden";
+            msgPass.className = "msg-validacion texto-invalido"; // Antes: validation-msg text-invalid
+        }
+    }
+
+    function validarCorreo() {
+        const valor = correo.value.toLowerCase();
+        const regex = /@(?:gmail\.com|hotmail\.com|outlook\.com|yahoo\.com|)$/;
+        if (valor === "") { msgCorreo.innerHTML = ""; return; }
+        if (regex.test(valor)) {
+            msgCorreo.innerHTML = "✔ Correo válido";
+            msgCorreo.className = "msg-validacion texto-valido";
+        } else {
+            msgCorreo.innerHTML = "⚠ Solo aceptamos Gmail, Hotmail, Outlook, Yahoo";
+            msgCorreo.className = "msg-validacion texto-invalido";
+        }
+    }
+    pass1.addEventListener('input', validarPasswords);
+    pass2.addEventListener('input', validarPasswords);
+    correo.addEventListener('input', validarCorreo);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JDC PERFORMANCE - Pasión por los Autos</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+
+
+<!--ENCABEZADO IMAGEN, NOMBRE Y BOTON DE INICIAR SESION-->
+
+<header class="encabezado-principal">
+    <img th:src="@{/img/logog.jpeg}" alt="Logo JDC">
+
+    <a th:if="${session.usuarioSesion == null}"
+       th:href="@{/login}"
+       class="btn-login btnlogcolor header-btn-pos">INICIAR SESIÓN</a>
+
+    <a th:if="${session.usuarioSesion != null}"
+       th:href="@{/welcome}"
+       class="btn-login btnlogcolor header-btn-pos"><span th:text="${session.usuarioSesion.nombreCompleto}">MI PERFIL</span>
+    </a>
+    <h1>JDC PERFORMANCE</h1>
+</header>
+
+<!--BARRA DE NAVEGACION, AGENDAR CITA, COMPRAR AUTO, CONTACTO(NO HACE NADA-->
+<nav>
+    <ul class="menu-horizontal">
+        <!--AGENDAR CITA-->
+        <li><a href="#">AGENDA TU CITA</a>
+            <ul class="menu-vertical">
+                <li><a th:href="@{/cliente/agendar-cita(servicio='Tuning')}">TUNEO</a></li>
+                <li><a th:href="@{/cliente/agendar-cita(servicio='Hojalatero')}">HOJALATERÍA</a></li>
+                <li><a th:href="@{/cliente/agendar-cita(servicio='Mecánico')}">SERVICIO MECÁNICO</a></li>
+                <li><a th:href="@{/cliente/agendar-cita(servicio='Pintor')}">PINTURA</a></li>
+                <li><a th:href="@{/cliente/agendar-cita(servicio='Eléctrico')}">SISTEMA ELÉCTRICO</a></li>
+            </ul>
+        </li>
+        <!--COMPRA AUTO-->
+        <li><a th:href="@{/catalogo}">COMPRA TU PROXIMO AUTO</a>
+            <ul class="menu-vertical">
+                <li><a th:href="@{/catalogo}">BMW</a></li>
+                <li><a th:href="@{/catalogo}">HONDA</a></li>
+                <li><a th:href="@{/catalogo}">MAZDA</a></li>
+                <li><a th:href="@{/catalogo}">CHEVROLET</a></li>
+                <li><a th:href="@{/catalogo}">NISSAN</a></li>
+                <li><a th:href="@{/catalogo}">TOYOTA</a></li>
+            </ul>
+        </li>
+
+        <!--CONTACTO-->
+        <li><a href="#contacto">CONTACTANOS</a>
+            <ul class="menu-vertical">
+                <li><a href="#">CORREO ELECTRONICO</a></li>
+                <li><a href="#">WHATSAPP</a></li>
+                <li><a href="#">NUMERO TELEFONICO</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<!--Contenido principal seccion1 --->
+
+<section class="seccion-principal">
+    <div class="contenido-principal">
+        <h2>INGENIERÍA Y PASIÓN AUTOMOTRIZ</h2>
+        <p>Restauración, Modificación y VENTA de Autos de Cualquier Tipo.</p>
+        <div class="main-button">
+            <a th:href="@{/catalogo}" class="btn-sec-main">VER CATÁLOGO</a>
+            <a th:href="@{/cliente/agendar-cita(servicio='Mecánico')}" class="btn-sec-main btn-outline">AGENDAR SERVICIO</a>
+        </div>
+    </div>
+</section>
+
+
+    <!--Seccion Quienes somos--->
+<section class="seccion-intro">
+    <div class="container-intro">
+        <div class="texto-intro">
+            <h3>¿QUIÉNES SOMOS?</h3>
+            <p>
+                En <strong>JDC PERFORMANCE</strong>, no solo arreglamos autos; creamos máquinas de precisión.
+                Somos un taller especializado en llevar vehículos al siguiente nivel, combinando la mecánica tradicional
+                con las últimas tendencias en Tuning y Performance.
+            </p>
+        </div>
+        <!--MINI VENTANAS--->
+<div class="ventanas-grid">
+    <div class="info-ventanas">
+        <h4>NUESTRA MISIÓN</h4>
+        <p>Brindar soluciones automotrices de excelencia, sacando adelante vehículos de cualquier tipo de calidad, garantizando siempre la máxima potencia, seguridad y satisfacción para nuestros clientes más exigentes y casuales.</p>
+    </div>
+
+    <div class="info-ventanas">
+        <h4>NUESTRA VISIÓN</h4>
+        <p>Consolidarnos como el Top Secret de la Ciudad de México en modificación y restauración automotriz, siendo reconocidos por nuestra calidad, innovación y pasión por los motores.</p>
+    </div>
+
+    <div class="info-ventanas">
+        <h4>NUESTROS VALORES</h4>
+        <ul class="lista-val">
+            <li>👑Calidad Premium</li>
+            <li>✊Honestidad Total</li>
+            <li>✨Pasión por el Detalle</li>
+            <li>💻Innovación Constante</li>
+            <li>🔰Cero discriminación</li>
+        </ul>
+    </div>
+</div>
+</div>
+</section>
+
+<footer id="contacto" class="main-footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <h3>JDC PERFORMANCE</h3>
+            <p>Tu taller de confianza</p>
+        </div>
+        <div class="footer-info">
+            <p>Ubicación Av. Del Árbol, Consejo Agrarista Mexicano, Iztapalapa, Distrito Federal </p>
+            <p>Tel: 5513438911</p>
+            <p>GrupoJDC@jdcperformance.com</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

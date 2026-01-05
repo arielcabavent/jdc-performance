@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Alta de Autos - JDC Admin</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/forms.css}">
+</head>
+<body>
+
+<div class="contenedor-form contenedor-ancho">
+
+    <div class="contenedor-logo">
+        <img th:src="@{/img/logog.jpeg}" alt="JDC Logo" class="logo-form">
+    </div>
+
+    <h2>NUEVO AUTO</h2>
+
+    <div th:if="${exito}" class="error-msg msg-exito">
+        <span th:text="${exito}"></span>
+    </div>
+
+    <div th:if="${error}" class="error-msg msg-prec">
+        <span th:text="${error}"></span>
+    </div>
+
+    <form th:action="@{/admin/alta-auto}" th:object="${autoDto}" method="post">
+
+        <div class="fila-entradas">
+            <input type="text" th:field="*{marca}" placeholder="MARCA (Ej. MERCEDES)" required autocomplete="off"/>
+            <input type="text" th:field="*{modelo}" placeholder="MODELO (Ej. CLA200)" required autocomplete="off"/>
+        </div>
+
+        <div class="fila-entradas">
+            <input type="text" th:field="*{color}" placeholder="COLOR" required autocomplete="off"/>
+            <input type="number" step="0.01" th:field="*{precio}" placeholder="PRECIO ($)" required />
+        </div>
+
+        <div class="separador-form"></div>
+
+        <input type="text" th:field="*{imagenUrl}" placeholder="URL DE LA FOTO (Opcional)" autocomplete="off"/>
+
+        <p class="texto-pista">Provicional</p>
+
+        <button type="submit" class="btn-ancho-total">PUBLICAR AUTO</button>
+    </form>
+
+    <div style="margin-top: 30px;">
+        <a th:href="@{/welcome}" class="link-volver">← Volver a Mi Perfil</a>
+    </div>
+</div>
+
+</body>
+</html>
