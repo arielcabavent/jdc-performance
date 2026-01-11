@@ -57,15 +57,14 @@
     const correo = document.getElementById('campoCorreo');
     const msgCorreo = document.getElementById('msgCorreo');
 
-    // ⚠️ ACTUALIZADO: Cambiamos las clases dentro del JS para que coincidan con el CSS
     function validarPasswords() {
         if (pass2.value === "") { msgPass.innerHTML = ""; return; }
         if (pass1.value === pass2.value) {
             msgPass.innerHTML = "✔ Las contraseñas coinciden";
-            msgPass.className = "msg-validacion texto-valido"; // Antes: validation-msg text-valid
+            msgPass.className = "msg-validacion texto-valido";
         } else {
             msgPass.innerHTML = "✗ Las contraseñas NO coinciden";
-            msgPass.className = "msg-validacion texto-invalido"; // Antes: validation-msg text-invalid
+            msgPass.className = "msg-validacion texto-invalido";
         }
     }
 

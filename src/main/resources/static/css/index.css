@@ -1,4 +1,3 @@
-/* Encabezado */
 .encabezado-principal {
     background-color: #eddfbc;
     padding: 30px 20px;
@@ -110,7 +109,6 @@ nav {
     color: black;
 }
 
-/* Vista principal*/
 .seccion-principal {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../img/fondo.jpg');
     background-size: cover;
@@ -172,7 +170,6 @@ nav {
     color: #111;
 }
 
-/* Seccion de quienes somos*/
 .seccion-intro {
     padding: 60px 20px;
     background-color: white;

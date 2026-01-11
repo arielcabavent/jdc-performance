@@ -10,8 +10,6 @@ import java.util.Optional;
 
 @Repository
 public class LoginDao implements LoginRepository {
-
-    // 1. Los Autowired van AQUÍ, al nivel de la clase
     @Autowired
     private UsuarioRepository usuarioRepo;
     @Autowired
@@ -21,31 +19,27 @@ public class LoginDao implements LoginRepository {
     @Autowired
     private ClienteRepository clienteRepo;
 
-    // 2. Este es el método nuevo que reemplaza al anterior
     @Override
     public Either<Integer, SesionDto> login(String login, String password) {
 
-        // PASO A: Buscamos al usuario por credenciales (SIN importar si está activo o no)
-        // Nota: Asegúrate de haber agregado findByLoginAndPassword en UsuarioRepository como te dije antes.
         Optional<Usuario> usuarioOpt = usuarioRepo.findByLoginAndPassword(login, password);
 
-        // ERROR 1: No existe o contraseña mal
+        // error 1 no existe o contraseña mal
         if (usuarioOpt.isEmpty()) {
             return Either.left(1);
         }
 
         Usuario u = usuarioOpt.get();
 
-        // ERROR 2: Existe, pero está INACTIVO
+        // erro 2 existe, pero está f
         if (!u.getActivo()) {
             return Either.left(2);
         }
 
-        // PASO B: Si llegamos aquí, está todo bien. Construimos la sesión.
         SesionDto sesion = null;
         int idRol = u.getRol().getIdRol();
 
-        // --- Lógica para ADMIN ---
+        //  logica para ADMIN
         if (idRol == 1) {
             var adminOpt = adminRepo.findByUsuario_IdUsuario(u.getIdUsuario());
             if (adminOpt.isPresent()) {
@@ -59,7 +53,7 @@ public class LoginDao implements LoginRepository {
                         .build();
             }
         }
-        // --- Lógica para EMPLEADO ---
+        //logica para EMPLEADO
         else if (idRol == 2) {
             var empOpt = empleadoRepo.findByUsuario_IdUsuario(u.getIdUsuario());
             if (empOpt.isPresent()) {
@@ -74,7 +68,7 @@ public class LoginDao implements LoginRepository {
                         .build();
             }
         }
-        // --- Lógica para CLIENTE ---
+        //logica para CLIENTE
         else if (idRol == 3) {
             Cliente cli = clienteRepo.findByUsuario_IdUsuario(u.getIdUsuario());
             if (cli != null) {
@@ -87,8 +81,6 @@ public class LoginDao implements LoginRepository {
                         .build();
             }
         }
-
-        // Validación final por si falló la carga de datos del rol
         if (sesion == null) {
             return Either.left(1);
         }
@@ -96,7 +88,6 @@ public class LoginDao implements LoginRepository {
         return Either.right(sesion);
     }
 
-    // --- Métodos de Guardado (Se quedan igual) ---
 
     @Override
     public Usuario saveUsuario(Usuario usuario) {
